@@ -92,8 +92,6 @@ namespace EscapeFromTheWoods
             Console.WriteLine($"{woodID}:write db routes {woodID},{monkey.name} end");
         }
 
-
-
         public void WriteEscaperoutesToBitmap(List<List<Tree>> routes)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
@@ -142,6 +140,8 @@ namespace EscapeFromTheWoods
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{woodID}:write db wood {woodID} end");
         }
+
+        /// /////////////////////////////////////////////////////////////
 
 
         public List<Tree> EscapeMonkey(Monkey monkey)
