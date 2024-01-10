@@ -11,7 +11,7 @@ namespace EscapeFromTheWoods
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -34,7 +34,13 @@ namespace EscapeFromTheWoods
 
             List<Task> tasks1 = new List<Task>();
             Map m1 = new Map(0, 500, 0, 500);
-            Wood w1 = WoodBuilder.GetWood(500, m1, path, mdb);
+
+
+            WoodBuilder woodBuilder1 = new WoodBuilder();
+
+            Wood w1 = await woodBuilder1.GetWood(500, m1, path, mdb);
+
+
 
             //tasks1.Add(w1.PlaceMonkey("Alice", IDgenerator.GetMonkeyID()));
             //tasks1.Add(w1.PlaceMonkey("Janice", IDgenerator.GetMonkeyID()));
@@ -79,7 +85,10 @@ namespace EscapeFromTheWoods
 
             List<Task> tasks2 = new List<Task>();
             Map m2 = new Map(0, 200, 0, 400);
-            Wood w2 = WoodBuilder.GetWood(2500, m2, path,mdb);
+
+            WoodBuilder woodBuilder2 = new WoodBuilder();
+
+            Wood w2 = await woodBuilder2.GetWood(500, m1, path, mdb);
 
             //tasks2.Add(w2.PlaceMonkey("Tom", IDgenerator.GetMonkeyID()));
             //tasks2.Add(w2.PlaceMonkey("Jerry", IDgenerator.GetMonkeyID()));
@@ -122,7 +131,9 @@ namespace EscapeFromTheWoods
 
 
             Map m3 = new Map(0, 400, 0, 400);
-            Wood w3 = WoodBuilder.GetWood(2000, m3, path,mdb);
+            WoodBuilder woodBuilder3 = new WoodBuilder();
+
+            Wood w3 = await woodBuilder3.GetWood(500, m1, path, mdb);
 
             //List<Task> tasks3 = new List<Task>();
 
@@ -173,21 +184,21 @@ namespace EscapeFromTheWoods
             //w3.WriteWoodToDB();
 
 
-            List<Thread> writeThreads = new List<Thread>();
+            //List<Thread> writeThreads = new List<Thread>();
 
-            writeThreads.Add(new Thread(() => w1.WriteWoodToDB()));
-            writeThreads.Add(new Thread(() => w2.WriteWoodToDB()));
-            writeThreads.Add(new Thread(() => w3.WriteWoodToDB()));
+            //writeThreads.Add(new Thread(() => w1.WriteWoodToDB()));
+            //writeThreads.Add(new Thread(() => w2.WriteWoodToDB()));
+            //writeThreads.Add(new Thread(() => w3.WriteWoodToDB()));
 
-            foreach (var thread in writeThreads)
-            {
-                thread.Start();
-            }
+            //foreach (var thread in writeThreads)
+            //{
+            //    thread.Start();
+            //}
 
-            foreach (var thread in writeThreads)
-            {
-                thread.Join(); // Wacht op elke thread om te voltooien voordat verder te gaan
-            }
+            //foreach (var thread in writeThreads)
+            //{
+            //    thread.Join(); // Wacht op elke thread om te voltooien voordat verder te gaan
+            //}
 
 
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,21 +217,43 @@ namespace EscapeFromTheWoods
             //w3.Escape();
 
 
-            List<Thread> escapeThreads = new List<Thread>();
+            //List<Thread> escapeThreads = new List<Thread>();
 
-            escapeThreads.Add(new Thread(() => w1.Escape()));
-            escapeThreads.Add(new Thread(() => w2.Escape()));
-            escapeThreads.Add(new Thread(() => w3.Escape()));
+            //escapeThreads.Add(new Thread(() => w1.Escape()));
+            //escapeThreads.Add(new Thread(() => w2.Escape()));
+            //escapeThreads.Add(new Thread(() => w3.Escape()));
 
-            foreach (var thread in escapeThreads)
+            //foreach (var thread in escapeThreads)
+            //{
+            //    thread.Start();
+            //}
+
+            //foreach (var thread in escapeThreads)
+            //{
+            //    thread.Join(); // Wacht op elke thread om te voltooien voordat verder te gaan
+            //}
+
+
+            List<Thread> threads = new List<Thread>();
+
+            threads.Add(new Thread(() => w1.WriteWoodToDB()));
+            threads.Add(new Thread(() => w2.WriteWoodToDB()));
+            threads.Add(new Thread(() => w3.WriteWoodToDB()));
+
+            threads.Add(new Thread(() => w1.Escape()));
+            threads.Add(new Thread(() => w2.Escape()));
+            threads.Add(new Thread(() => w3.Escape()));
+
+            foreach (var thread in threads)
             {
                 thread.Start();
             }
 
-            foreach (var thread in escapeThreads)
+            foreach (var thread in threads)
             {
                 thread.Join(); // Wacht op elke thread om te voltooien voordat verder te gaan
             }
+
 
 
 

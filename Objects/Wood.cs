@@ -20,7 +20,7 @@ namespace EscapeFromTheWoods
         public List<Tree> trees { get; set; }
         public List<Monkey> monkeys { get; private set; }
         private Map map;
-        Stopwatch stopwatch;
+
         
 
         public Wood(int woodID, List<Tree> trees, Map map, string path, DBWriterMDB mdb)
@@ -31,17 +31,6 @@ namespace EscapeFromTheWoods
             this.map = map;
             this.path = path;
             this.mdb = mdb;
-        }
-
-        public Wood(int woodID, List<Tree> trees, Map map, string path, DBWriterMDB mdb, Stopwatch stopwatch)
-        {
-            this.woodID = woodID;
-            this.trees = trees;
-            this.monkeys = new List<Monkey>();
-            this.map = map;
-            this.path = path;
-            this.mdb = mdb;
-            this.stopwatch = stopwatch;
         }
 
         //async task van maken
@@ -140,6 +129,8 @@ namespace EscapeFromTheWoods
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"{woodID}:write db wood {woodID} end");
         }
+
+
 
         /// /////////////////////////////////////////////////////////////
 

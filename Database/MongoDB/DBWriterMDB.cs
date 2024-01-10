@@ -29,6 +29,12 @@ namespace EscapeFromTheWoods.Database.MongoDB
             await monkeyRecordsCollection.InsertManyAsync(data);
         }
 
+        public async Task WriteWoodCollectiontToDB(Wood wood)
+        {
+            var woodCollection = _database.GetCollection<Wood>("WoodCollection");
+            await woodCollection.InsertOneAsync(wood);
+        }
+
 
     }
 }
