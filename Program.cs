@@ -26,7 +26,7 @@ namespace EscapeFromTheWoods
             .WriteTo.File("LogFile.txt")
             .CreateLogger();
 
-            string path = @"C:\Users\Frederik\Downloads\EscapeFromTheWoodsToRefactor (2)\EscapeFromTheWoodsToRefactor\bitmapimages";
+            string path = @"C:\Users\frede\Documents\Gent\Jaar 2\Refactoring Eindopdracht\bitmapimages";
 
 
 

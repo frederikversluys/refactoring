@@ -10,6 +10,9 @@ using System.Diagnostics;
 
 namespace EscapeFromTheWoods
 {
+
+
+    //wood in 1 keer wegschrijven dan is dit ok voor database
     public class Wood
     {
         private const int drawingFactor = 8;
